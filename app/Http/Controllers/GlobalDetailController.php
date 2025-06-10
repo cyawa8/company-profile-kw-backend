@@ -7,17 +7,12 @@ use Illuminate\Http\Request;
 
 class GlobalDetailController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         return GlobalDetail::with('category')->get(); // jika ada relasi
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -32,17 +27,11 @@ class GlobalDetailController extends Controller
         return response()->json($detail, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(GlobalDetail $globalDetail)
     {
         return $globalDetail->load('category'); // jika ada relasi
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, GlobalDetail $globalDetail)
     {
         $validated = $request->validate([
@@ -57,9 +46,6 @@ class GlobalDetailController extends Controller
         return response()->json($globalDetail);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(GlobalDetail $globalDetail)
     {
         $globalDetail->delete();
